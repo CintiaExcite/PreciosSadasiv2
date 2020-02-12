@@ -55,9 +55,14 @@ Route::resource('amenities', 'Api\Amenities\AmenitiesController', ['except' => [
 
 /*Niveles o Plantas Cintia*/
 Route::resource('level', 'Api\Level\LevelController', ['except' => ['create', 'edit']]);
+	/*Consulta para traer un modelo(producto) con el nivel y las especificaciones*/
+	Route::resource('products.levelspecifications', 'Api\ProdLevelSpecific\ProdLevelSpecificController', ['only' => ['index']]);
 
 /*Especificaciones Cintia*/
 Route::resource('specification', 'Api\Specifications\SpecificationsController', ['except' => ['create', 'edit']]);
+
+/*Modulo de tabla pivote product, level, specification, quantity*/
+Route::resource('product','Api\ProdLevelSpecific\ProdLevelSpecificController', ['only' => ['store', 'update']]);
 
 /*Transformar numero a letra en precios*/
 Route::get('numeroLetras', 'Api\Price\NumbersLettersController@indexletras');

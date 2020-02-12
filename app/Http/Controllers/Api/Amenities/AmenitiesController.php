@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\Amenities;
 
-use App\Models\Amenities;
+use App\Models\Amenity;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
 
@@ -10,7 +10,7 @@ class AmenitiesController extends ApiController
 {
     public function index()
     {
-        return Amenities::orderBy('id','DESC')->get();
+        return Amenity::orderBy('id','DESC')->get();
     }
 
     public function store(Request $request)
@@ -23,19 +23,19 @@ class AmenitiesController extends ApiController
         ];
 
         $this->validate($request, $rules, $messages);
-        $amenities = new Amenities;
+        $amenities = new Amenity;
         $amenities->description = $request->description;
         $amenities->save();
 
         return response()->json(['mensaje'=>'Amenidad registrada', 'data'=>$amenities]);
     }
 
-    public function show(Amenities $amenity)
+    public function show(Amenity $amenity)
     {
         return $this->showOne($amenity);
     }
 
-    public function update(Request $request, Amenities $amenity)
+    public function update(Request $request, Amenity $amenity)
     {
         $rules = [
             'description' => 'required',
@@ -53,7 +53,7 @@ class AmenitiesController extends ApiController
         return response()->json(['mensaje'=>'Data modificada','data'=>$amenity]);
     }
 
-    public function destroy(Amenities $amenity)
+    public function destroy(Amenity $amenity)
     {
         $amenity->delete();
         return $this->showOne($amenity);

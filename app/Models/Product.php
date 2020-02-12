@@ -54,5 +54,16 @@ class Product extends Model
 		if ($value != null && $value != '') {
 			return "https://precios.sadasi.com/v2/files/" . $value;
 		} else { return $value; }
+	}
+	
+	public function levels()
+    {
+        return $this->belongsToMany(Level::class,'prod_level_spec')->withPivot('specification_id','quantity');
+	}
+	  
+	public function specification()
+    {
+        return $this->belongsToMany(Specification::class,'prod_level_spec')->withPivot('specification_id','quantity');
     }
+
 }

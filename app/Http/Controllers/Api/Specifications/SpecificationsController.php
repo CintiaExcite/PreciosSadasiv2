@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\Specifications;
 
-use App\Models\Specifications;
+use App\Models\Specification;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
 
@@ -10,7 +10,7 @@ class SpecificationsController extends ApiController
 {
     public function index()
     {
-        return Specifications::orderBy('id','DESC')->get();
+        return Specification::orderBy('id','DESC')->get();
     }
 
     public function store(Request $request)
@@ -24,19 +24,19 @@ class SpecificationsController extends ApiController
         ];
 
         $this->validate($request, $rules, $messages);
-        $specification = new Specifications;
+        $specification = new Specification;
         $specification->description = $request->description;
         $specification->save();
 
         return response()->json(['mensaje'=>'Especificación registrada','data'=>$specification]);
     }
 
-    public function show(Specifications $specification)
+    public function show(Specification $specification)
     {
         return $this->showOne($specification);
     }
 
-    public function update(Request $request, Specifications $specification)
+    public function update(Request $request, Specification $specification)
     {
         $rules = [
             'description' => 'required',
@@ -54,7 +54,7 @@ class SpecificationsController extends ApiController
         return response()->json(['mensaje'=>'Especificación modificada', 'data'=>$specification]);
     }
 
-    public function destroy(Specifications $specification)
+    public function destroy(Specification $specification)
     {
         $specification->delete();
         return $this->showOne($specification);
