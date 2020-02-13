@@ -45,4 +45,11 @@ class Development extends Model
 			return "http://sadasi.test/precios/public/files/" . $value;
 		} else { return $value; }
     }
+
+    /*Funcion amenities*/
+
+	public function amenities()
+	{
+    return $this->belongsToMany(Amenity::Class, 'developments_amenities')->withPivot('development_id');
+	} 
 }

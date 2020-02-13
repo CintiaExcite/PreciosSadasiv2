@@ -11,4 +11,10 @@ class Amenity extends Model
     protected $table = 'amenities';
     protected $fillable = ['description'];
     protected $dates = ['deleted_at'];
+
+    /*Funcion Development*/
+	public function development()
+	{
+    	return $this->belongsToMany(Development::class, 'developments_amenities')->withPivot('amenity_id');
+	}
 }
