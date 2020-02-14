@@ -43,7 +43,7 @@ class ProdLevelSpecificController extends ApiController
 
     public function update(Request $request, Product $product)
     {
-        $product->levels()->sync($request->level_id,['specification_id'=>$request->specification_id,'quantity'=>$request->quantity]);
+        $product->levels()->syncWithoutDetaching($request->level_id,['specification_id'=>$request->specification_id,'quantity'=>$request->quantity]);
     }
 
 
