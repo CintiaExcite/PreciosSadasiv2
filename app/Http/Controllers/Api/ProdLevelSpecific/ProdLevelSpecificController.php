@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\ProdLevelSpecific;
 
 use App\Models\Product;
-//use App\Models\Level;
+use App\Models\Level;
 //use App\Models\Specifications;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
@@ -35,7 +35,8 @@ class ProdLevelSpecificController extends ApiController
 
     public function store(Request $request)
     {
-        $product= Product::find($request->product_id);
+
+        $product= Product::findOrFail($request->product_id);
         $product->levels()->attach($request->level_id,['specification_id'=>$request->specification_id, 'quantity'=>$request->quantity]);
 
     }

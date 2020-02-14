@@ -70,8 +70,9 @@ Route::resource('priceee', 'Api\Price\PriceController', ['only' => ['show']]);
 Route::resource('products.price', 'Api\Product\ProductPriceController', ['except' => ['create', 'edit', 'destroy']]);
 
 /*Tabla pivote*/
-Route::resource('developments.amenities', 'Api\AmenitiesDevelopment\AmenitiesDevelopmentController', ['only' => ['index', 'update', 'store' ]]);
+Route::resource('developments.amenities', 'Api\AmenitiesDevelopment\AmenitiesDevelopmentController', ['only' => ['index']]);
 
+Route::resource('deveamenity', 'Api\AmenitiesDevelopment\AmenitiesDevelopmentController', ['only' => ['update', 'store' ]]);
 
 
 

@@ -32,15 +32,32 @@ class AmenitiesDevelopmentController extends ApiController
         return response()->json(['mensaje'=>'registro exitoso','data'=>$development]);
 	} 
 
-	public function update(Request $request)
-    {
+        public function update(Request $request, Development $development)
+     {
 
-        $development= Development::find($request->development_id);
- 
+
          $development->amenities()->syncWithoutDetaching($request->amenity_id,['development_id'=>$request->development_id]); 
      
-        return $this->showAll($development->amenities);
-    }
+     return response()->json(['data' => $development]);
+
+     }
 
 
 }
+
+
+     /*   $this->verifydevelopment($development, $amenity);
+        $development->fill($request->only([
+                'amenity_id',
+                'development_id',
+                
+        ])); 
+
+            if ($development->isClean()){
+                return $this->errorResponse('debe modificar al menos un valor', 422);
+            }
+
+            $development->save();
+            return $this->showOne($development);
+*/ 
+    

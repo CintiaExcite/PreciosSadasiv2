@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\Amenity;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -50,6 +50,6 @@ class Development extends Model
 
 	public function amenities()
 	{
-    return $this->belongsToMany(Amenity::Class, 'developments_amenities')->withPivot('development_id');
+    return $this->belongsToMany(Amenity::class, 'developments_amenities')->withPivot('development_id');
 	} 
 }
