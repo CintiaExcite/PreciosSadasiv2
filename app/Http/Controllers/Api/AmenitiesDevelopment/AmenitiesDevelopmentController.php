@@ -33,14 +33,14 @@ class AmenitiesDevelopmentController extends ApiController
 	} 
 
         public function update(Request $request, Development $development)
-     {
+    {
 
 
          $development->amenities()->syncWithoutDetaching($request->amenity_id,['development_id'=>$request->development_id]); 
      
      return response()->json(['data' => $development]);
 
-     }
+    }
 
 
 }
