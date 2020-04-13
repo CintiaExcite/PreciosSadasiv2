@@ -19,11 +19,20 @@ class ProductPriceController extends ApiController
      * @param  \App\Models\Price  $price
      * @return \Illuminate\Http\Response
      */
-    public function index(Product $product)
+    /*public function index(Product $product)
     {
-        /*if (!User::searchPermitOnArray(["MP", "SMP"])) return $this->errorResponse("No tienes permitido realizar esta acción.", 401);*/
+        if (!User::searchPermitOnArray(["MP", "SMP"])) return $this->errorResponse("No tienes permitido realizar esta acción.", 401);
         $price = $product->price()->first();
         return $this->showOne($price);
+    }*/
+    
+    public function index(Product $product)
+    {
+        $price = $product->price()->first();
+        $soloprice = $price->price;
+        $letra = \NumeroALetras::convertir($soloprice);
+        return response()->json(['price'=>$price, 'price-text'=>$letra]);
+        //return $letra;
     }
     
     /**
